@@ -12,10 +12,21 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env' });
 
 //portNo
-const PORT = process.env.PORT || 6600;
+const PORT = process.env.PORT || 8000;
 
 //loading database
 connectDB();
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
 app.use(isAuth);
 
 app.use(bodyParser.json());
@@ -24,7 +35,6 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res, next) => {
     res.send('GraphQl Assignment');
 })
-
 
 app.use('/graphql', graphqlHttp({
     schema: graphQlSchema,
