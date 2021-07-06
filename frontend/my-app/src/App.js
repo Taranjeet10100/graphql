@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-
-import AuthPage from './pages/Auth';
-import BookingsPage from './pages/Bookings';
-import EventsPage from './pages/Events';
-import MainNavigation from './components/Navigation/MainNavigation';
-import AuthContext from './context/auth-context';
-
-import './App.css';
-
+// import AuthPage from './pages/Auth';
+// import BookingsPage from './pages/Bookings';
+// import EventsPage from './pages/Events';
+// import MainNavigation from './components/Navigation/MainNavigation';
+// import AuthContext from './context/auth-context';
+// import './App.css';
+import Routes from './Routes/Routes';
 class App extends Component {
   state = {
     token: null,
@@ -26,7 +24,8 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <React.Fragment>
+        <Routes/>
+        {/* <React.Fragment>
           <AuthContext.Provider
             value={{
               token: this.state.token,
@@ -53,7 +52,7 @@ class App extends Component {
               </Switch>
             </main>
           </AuthContext.Provider>
-        </React.Fragment>
+        </React.Fragment> */}
       </BrowserRouter>
     );
   }
